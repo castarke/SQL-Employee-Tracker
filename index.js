@@ -203,11 +203,81 @@ function addNewDepartment() {
     });
 }
 
+function updateEmployeeRole() {
+  connection.promise().query(
+    "SELECT * FROM employee"
+  ).then(([rows])=>{
+    const employeeChoices = rows.map(({id,first_name,last_name})=>({name:`${first_name} ${last_name}`, value:id}));
+    return inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'id',
+        message: 'Select the employee you want to update:',
+        choices: employeeChoices,
+      },
+      {
+        type: 'input',
+        name: 'first_name',
+        message: 'Enter the new first name:',
+        default: null,
+      },
+      {
+        type: 'input',
+        name: 'last_name',
+        message: 'Enter the new last name:',
+        default: null,
+      },
+      {
+        type: 'input',
+        name: 'role_id',
+        message: 'Enter the new role ID:',
+        default: null,
+      },
+      {
+        type: 'input',
+        name: 'manager_id',
+        message: 'Enter the new manager ID:',
+        default: null,
+      }
+    ]).then(answers=> {
+      const {id, first_name, last_name, role_id, manager_id} = answers;
+      const updatedInfo = {};
+
+      if (first_name !== null) {
+        updatedInfo.first_name = first_name;
+      }
+
+      if (last_name !== null) {
+        updatedInfo.last_name = last_name;
+      }
+
+      if (role_id !== null) {
+        updatedInfo.role_id = role_id;
+      }
+
+      if (manager_id !== null) {
+        updatedInfo.manager_id = manager_id;
+      }
+      connection.promise().query("UPDATE employee SET WHERE id = ?, first_name =?, last_name =?, role_id = ?, manager_id = ?", [updatedInfo, id])
+      .then(()=>{
+        console.log(`Employee with ${id} has been updated!`);
+        startEmployeeManager();
+        
+      })
+      .catch(err =>{
+        console.log(`Error in updating ${first_name}`, err);
+        startEmployeeManager();
+      })
+    })
+  })
+  }
+
 function deleteEmployee() {
   connection.promise().query("SELECT * FROM employee")
     .then(([rows]) => {
-      const employeeChoices = rows.map(({ id, first_name}) => 
-      ({ name: first_name, value: id }));
+      const employeeChoices = rows.map(({ id, first_name, last_name}) => 
+      ({ name: `${first_name} ${last_name}`, value: id }));
        
       return inquirer
       .prompt([
