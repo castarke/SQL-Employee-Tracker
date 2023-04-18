@@ -10,7 +10,6 @@ const mysql = require('mysql2');
 
   connection.connect(function (err){
     if (err) throw err;
-    // console.log("inside sql connection")
   });
 
   module.exports = connection;
