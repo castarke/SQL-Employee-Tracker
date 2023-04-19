@@ -1,7 +1,8 @@
+-- deletes tables if they already exist
 DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS employee;
-
+-- feeds information into each of the tables 
 INSERT INTO department (name)
 VALUES ("Accounting"),
        ("Legal"),

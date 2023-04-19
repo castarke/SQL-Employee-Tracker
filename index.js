@@ -1,3 +1,4 @@
+// bringing in required  files
 const inquirer = require('inquirer');
 const connection = require("./db/connection");
 require("console.table");
@@ -5,7 +6,7 @@ require("console.table");
 
 
 startEmployeeManager();
-
+// function to bring up the  UI  in the terminal
 function startEmployeeManager() {
   inquirer
     .prompt({
@@ -25,6 +26,7 @@ function startEmployeeManager() {
         "Delete Department",
         "Exit"
       ]
+      // brings up specific choice, and depending on selection can bring up a list of employees, roles, and databases. Can also Add/delete employees roles and databases. There is also an option to update an employee's information
     }).then(function (answer) {
       switch (answer.choice) {
         case "View All Employees":
@@ -74,7 +76,7 @@ function startEmployeeManager() {
       console.log(answer);
     });
 }
-
+// function to display all employees
 function viewAllEmployees() {
   connection.query("SELECT * FROM employee", function(error,results){
     if(error) {
@@ -84,7 +86,7 @@ function viewAllEmployees() {
       startEmployeeManager();
     }
   })};
-
+// function to display all roles
 function viewAllRoles() {
   connection.query("SELECT * FROM role", function(error,results){
     if(error) {
@@ -94,7 +96,7 @@ function viewAllRoles() {
       startEmployeeManager();
     }
   })};
-
+// function to display all departments
 function viewAllDepartments() {
   connection.query("SELECT * FROM department", function(error,results){
     if(error) {
@@ -104,7 +106,7 @@ function viewAllDepartments() {
       startEmployeeManager();
     }
   })};
-
+// function to add new employee
   function addNewEmployee() {
     inquirer
       .prompt([
@@ -144,7 +146,7 @@ function viewAllDepartments() {
         );
       });
   }
-
+// function to add new role
   function addNewRole() {
     inquirer.prompt([
       {
@@ -177,7 +179,7 @@ function viewAllDepartments() {
       );
     });
   }
-
+// function to add new department
   function addNewDepartment() {
     inquirer.prompt([
       {
@@ -200,21 +202,14 @@ function viewAllDepartments() {
       );
     });
   }
-
+// function to update  employee info
 function updateEmployeeInfo() {
-
   connection.query("SELECT * FROM employee", function (error, results) {
-
     if (error) {
-
       console.error(error);
-
     } else {
-
       const employeeChoices = results.map(({ id, first_name, last_name }) => ({ name: `${first_name} ${last_name}`, value: id }));
-
       inquirer.prompt([
-
         {
           type: 'list',
           name: 'id',
@@ -241,15 +236,11 @@ function updateEmployeeInfo() {
           name: 'manager_id',
           message: 'Enter the new manager ID:',
         }
-
       ]).then(answers => {
-
         const { id, first_name, last_name, role_id, manager_id } = answers;
-
         const updatedInfo = {};
-
         if (first_name !== null) {
-          updatedInfo.first_name = first_name;
+         updatedInfo.first_name = first_name;
         }
         if (last_name !== null) {
           updatedInfo.last_name = last_name;
@@ -260,7 +251,6 @@ function updateEmployeeInfo() {
         if (manager_id !== null) {
           updatedInfo.manager_id = manager_id;
         }
-
         connection.query(
           "UPDATE employee SET ? WHERE id = ?",
           [updatedInfo, id],
@@ -277,7 +267,7 @@ function updateEmployeeInfo() {
     }
   });
 }
-
+// function to delete employee
 function deleteEmployee() {
   connection.query("SELECT * FROM employee", function (error, results) {
     if (error) {
@@ -285,10 +275,8 @@ function deleteEmployee() {
       startEmployeeManager();
       return;
     }
-
     const employeeChoices = results.map(({ id, first_name, last_name }) =>
       ({ name: `${first_name} ${last_name}`, value: id }));
-
     inquirer.prompt([
       {
         type: "list",
@@ -308,7 +296,7 @@ function deleteEmployee() {
     });
   });
 }
-
+// function to delete role
 function deleteRole() {
   connection.query("SELECT * FROM role", function (error, results) {
     if (error) {
@@ -337,7 +325,7 @@ function deleteRole() {
     }
   });
 }
-
+// function to delete department
 function deleteDepartment() {
   connection.query("SELECT * FROM department", function (error, results) {
     if (error) {
