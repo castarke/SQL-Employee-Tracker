@@ -2,22 +2,26 @@
   ![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)
 
   ## Table of Contents
-   -db    
+   
+    -db    
+      
       -connection.js
+      
       -schema.sql
+      
       -seeds.sql
 
-   -.gitignore
+    -.gitignore
 
-   -index.js
+    -index.js
 
-   -license
+    -license
 
-   -package-lock.json
+    -package-lock.json
     
-   -package.json
+    -package.json
     
-   -README.md
+    -README.md
 
 ## Description:
   Through the integrated terminal you are able to display all the employees, departments, and roles. You are also able to add/delete employees, roles, and departments. You also have the ability to update a specific employees information. The point of all of this is to maintain an up to date database of employees, roles, and departments.
