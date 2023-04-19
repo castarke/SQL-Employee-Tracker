@@ -28,7 +28,7 @@
 ## Installation
   You will need to install inquirer and mysql2 which can be done by typing out in the integrated terminal npm i inquirer and npm i mysql2. 
 ## Usage
-  You can scroll through a list of options and choose whether to view all employees, roles, and departments. Based on choice, it will display all within said table. You can also add/delete employees, roles, or departments. Based on choice, it will remove the selected employee, role, or department from the database. you can see the functionality  of mentioned in the video here:
+  You can scroll through a list of options and choose whether to view all employees, roles, and departments. Based on choice, it will display all within said table. You can also add/delete employees, roles, or departments. Based on choice, it will remove the selected employee, role, or department from the database. you can see the functionality  of mentioned in the video here: https://drive.google.com/file/d/10zo9Bt5oMHmvJJZL3MeY-Ofw5PMCOrAL/view 
 ## Credits
  The collaborators on this project are inquirer npm which can be found at https://www.npmjs.com/packagee/inquirer?activeTab=readme#methods and mysql2 which can be found https://www.npmjs.com/package/mysql2 
  ## License 
