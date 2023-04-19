@@ -3,9 +3,9 @@
 
   ## Table of Contents
    -db    
-     -connection.js
-     -schema.sql
-     -seeds.sql
+      -connection.js
+      -schema.sql
+      -seeds.sql
 
    -.gitignore
 
