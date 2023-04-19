@@ -2,10 +2,10 @@
   ![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)
 
   ## Table of Contents
-    -db    
-      -connection.js
-      -schema.sql
-      -seeds.sql
+   -db    
+     -connection.js
+     -schema.sql
+     -seeds.sql
 
    -.gitignore
 
